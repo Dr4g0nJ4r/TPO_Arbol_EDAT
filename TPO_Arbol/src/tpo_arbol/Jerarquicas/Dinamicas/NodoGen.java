@@ -1,52 +1,46 @@
-
 package tpo_arbol.Jerarquicas.Dinamicas;
 
+/**Estructura básica del Árbol Genérico. Contiene:
+ * 
+ *  - un elemento
+ *  - un enlace al nodo hijo situado más a la izquierda
+ *  - un enlace al nodo hermano
+ */
 public class NodoGen {
+    private Object elemento;
+    private NodoGen hijoIzquierdo;
+    private NodoGen hermano;
 
-    private Object elem;
-    private NodoGen izq;
-    private NodoGen der;
-
-    public NodoGen() {
-       
-        this.elem = null;
-        this.izq = null;
-        this.der = null;
-
+    /** Constructor. Retorna una instancia de NodoGen con el elemento pasado por parámetro y sin enlaces */
+    public NodoGen(Object elem)
+    {
+        this.elemento = elem;
+        this.hijoIzquierdo = null;
+        this.hermano = null;
     }
 
-    public NodoGen(Object elem) {
-        this.elem = elem;
-        this.izq = null;
-        this.der = null;
+    public Object getElemento() {
+        return this.elemento;
     }
 
-    public NodoGen(Object elem, NodoGen izq, NodoGen der) {
-        this.elem = elem;
-        this.izq = izq;
-        this.der = der;
+    public void setElemento(Object elemento) {
+        this.elemento = elemento;
     }
 
-    public Object getElem() {
-        return elem;
+    public NodoGen getHijoIzquierdo() {
+        return this.hijoIzquierdo;
     }
 
-    public void setElem(Object elem) {
-        this.elem = elem;
+    public void setHijoIzquierdo(NodoGen hijoIzquierdo) {
+        this.hijoIzquierdo = hijoIzquierdo;
     }
 
-    public NodoGen getIzq() {
-        return izq;
+    public NodoGen getHermano() {
+        return this.hermano;
     }
 
-    public void setIzq(NodoGen izq) {
-        this.izq = izq;
+    public void setHermano(NodoGen hermano) {
+        this.hermano = hermano;
     }
 
-    public NodoGen getDer() {
-        return der;
-    }
-
-    public void setDer(NodoGen der) {
-        this.der = der;
-    }
+}
