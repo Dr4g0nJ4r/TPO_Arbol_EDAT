@@ -4,10 +4,10 @@ public class Cola {
 
     //Cola estatica con arreglo de tamaño fijo definido por el usuario.
 
-    int TAM = 10;
-    Object[] arreglo;
-    int frente;
-    int fin;
+    private static int TAM = 10;
+    private Object[] arreglo;
+    private int frente;
+    private int fin;
 
     public Cola() {
         this.arreglo = new Object[TAM];
