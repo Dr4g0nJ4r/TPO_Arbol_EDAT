@@ -4,52 +4,99 @@ public class Cola {
 
     //Cola estatica con arreglo de tamaño fijo definido por el usuario.
 
-    private Object[] arreglo;
-    private int frente;
-    private int fin;
-    private int cant;
+    int TAM = 10;
+    Object[] arreglo;
+    int frente;
+    int fin;
 
-    public Cola(int tamaño) {
-        this.arreglo = new Object[tamaño];
+    public Cola() {
+        this.arreglo = new Object[TAM];
         this.frente = 0;
-        this.fin = -1;
-        this.cant = 0;
+        this.fin = 0;
     }
 
-    public boolean poner(Object nuevoElem) {
-        boolean exito = false;
-        if (this.cant < this.arreglo.length) {
-            this.fin++;
-            if (this.fin == this.arreglo.length) {  //Si llego al final del arreglo, vuelve al principio.
-                this.fin = 0;                       //Siempre que el arreglo sea circular.
-            }                                       
-            this.arreglo[this.fin] = nuevoElem;
-            this.cant++;
-            exito = true;
+    public boolean esVacia() {
+        boolean rta = false;
+
+        if (this.frente == this.fin) {
+            rta = true;
         }
-        return exito;
+        return rta;
+    }
+
+    public boolean poner(Object elem) {
+        boolean rta = false;
+
+        if (this.frente != (this.fin +1)%TAM) {
+
+            this.arreglo[fin] = elem;
+            rta = true;
+            this.fin = (this.fin + 1) % this.TAM;
+        }
+
+        return rta;
     }
 
     public boolean sacar() {
-        boolean exito = false;
-        if (this.cant != 0) {
-            this.arreglo[this.frente] = null;
-            this.frente++;
-            if (this.frente == this.arreglo.length) {
-                this.frente = 0;
-            }
-            this.cant--;
-            exito = true;
+
+        boolean rta = false;
+
+        if (!this.esVacia()) {
+
+            this.frente = (this.frente + 1) % this.TAM;
+            rta = true;
         }
-        return exito;
+        return rta;
     }
 
-    public Object obtenerFrente() {
-        Object elem = null;
-        if (this.cant != 0) {
-            elem = this.arreglo[this.frente];
+    public Object obtenerFrente(){
+    
+        Object rta=null;
+        if (!this.esVacia()) {
+        rta= this.arreglo[this.frente];    
         }
-        return elem;
+        
+        
+     return rta;
+    
     }
+    
+    public void vaciar () {
+    
+    this.arreglo= new Object[this.TAM];
+    this.frente=0;
+    this.fin=0;
+    
+    }
+    
+    @Override
+    public Cola clone(){
+    
+    Cola rta = new Cola();
+    
+    
+        for (int i = 0; i < TAM-1; i++) {
+            rta.arreglo[i]=this.arreglo[i];
+        }
+        rta.frente=this.frente;
+        rta.fin=this.fin;
+    
+    return rta;
+    }
+    
+    @Override
+    public String toString(){
+    
+        String rta="";
+    
+        int i=frente;
+        while(i!=fin){
+            rta += "| " + arreglo[i] + " |";
+            i=(i+1)%TAM;//vuelve a la posicion 0 con el '%TAM'
+        }
+        
+        
+        return rta;
+        }
 
 }
