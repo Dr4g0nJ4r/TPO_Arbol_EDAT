@@ -402,15 +402,16 @@ public class ArbolGen {
         }
         return resultado;
     }
+    //
     public boolean sonFrontera(Lista unaLista){
         boolean resultado = false;
-        
+        //LUIS
         return resultado;
     }
     
     public boolean equals(ArbolGen unArbol){
         boolean resultado = false;
-        
+        // NICOLAS
         return resultado;
     }
 }
