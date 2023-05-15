@@ -1,4 +1,4 @@
-package edat.estructuras2023.Lineales.Dinamicas;
+package tpo_arbol.Lineales.Dinamicas;
 
 public class Pila {
 

@@ -1,7 +1,7 @@
-package edat.estructuras2023.Lineales;
+package tpo_arbol.Lineales;
 
 //import edat.estructuras2023.Lineales.Dinamicas.Pila;
-import edat.estructuras2023.Lineales.Estaticas.Pila;
+import tpo_arbol.Lineales.Estaticas.Pila;
 /**
  *
  * @author Catedra EDAT - FAI - UNCOMA 

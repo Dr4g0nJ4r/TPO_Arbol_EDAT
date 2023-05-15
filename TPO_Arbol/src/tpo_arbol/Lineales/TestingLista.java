@@ -1,6 +1,6 @@
-package edat.estructuras2023.Lineales;
+package tpo_arbol.Lineales;
 
-import edat.estructuras2023.Lineales.Dinamicas.Lista;
+import tpo_arbol.Lineales.Dinamicas.Lista;
 
 public class TestingLista {
 

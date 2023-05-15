@@ -1,4 +1,4 @@
-package edat.estructuras2023.Lineales.Estaticas;
+package tpo_arbol.Lineales.Estaticas;
 
 public class Pila {
     // Pila estatica con arreglo de tamaño fijo definido por el usuario.
