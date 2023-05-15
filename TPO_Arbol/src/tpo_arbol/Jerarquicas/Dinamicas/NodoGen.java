@@ -1,3 +1,6 @@
+
+package tpo_arbol.Jerarquicas.Dinamicas;
+
 public class NodoGen {
 
     private Object elem;
