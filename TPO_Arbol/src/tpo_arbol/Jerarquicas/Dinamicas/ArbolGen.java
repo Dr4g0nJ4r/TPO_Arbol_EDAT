@@ -264,15 +264,18 @@ public class ArbolGen {
     /** */
     private void listarInordenAux(NodoGen nodo, Lista lista) {
         if (nodo != null) {
-            NodoGen nodoAux = nodo.getHijoIzquierdo();
-            if (nodoAux != null) {
-                listarInordenAux(nodoAux, lista);
-                nodoAux = nodoAux.getHermano();
+            if (nodo.getHijoIzquierdo() != null) {
+                listarInordenAux(nodo.getHijoIzquierdo(), lista);
             }
             lista.insertar(nodo.getElemento(), lista.longitud() + 1);
-            while (nodoAux != null) {
-                listarInordenAux(nodoAux, lista);
-                nodoAux = nodoAux.getHermano();
+
+            if (nodo.getHijoIzquierdo() != null) {
+
+                NodoGen nodoAux = nodo.getHijoIzquierdo().getHermano();
+                while (nodoAux != null) {
+                    listarInordenAux(nodoAux, lista);
+                    nodoAux = nodoAux.getHermano();
+                }
             }
         }
     }
@@ -355,7 +358,7 @@ public class ArbolGen {
             res += ")\n";
             nodoHijo = nodo.getHijoIzquierdo();
             while (nodoHijo != null) {
-                res +=" \n "+toStringAux(nodoHijo) ;
+                res += " \n " + toStringAux(nodoHijo);
                 nodoHijo = nodoHijo.getHermano();
             }
         }
@@ -407,14 +410,14 @@ public class ArbolGen {
         if (nodoThis.getElemento().equals(nodoUnArbol.getElemento())) {
             rta = true;
             if (nodoThis.getHijoIzquierdo() != null) {
-                rta = equalsAux(nodoThis.getHijoIzquierdo(), 
-                                nodoUnArbol.getHijoIzquierdo());
+                rta = equalsAux(nodoThis.getHijoIzquierdo(),
+                        nodoUnArbol.getHijoIzquierdo());
             }
 
             if (rta && nodoThis.getHermano() != null) {
 
                 rta = equalsAux(nodoThis.getHermano(),
-                                nodoUnArbol.getHermano());
+                        nodoUnArbol.getHermano());
             }
 
         }
