@@ -108,13 +108,13 @@ public class Lista{
                 rta=1;
             }else{
 
-                int i = 2;
+                int i = 1;
                 boolean exito=false;
                 Nodo aux = this.cabecera;
     
-                while(i<longitud && !exito){
+                while(i<=longitud && !exito){
 
-                    aux=aux.getEnlace();
+                    
     
                     if(elem.equals(aux.getElem())){
 
@@ -122,7 +122,7 @@ public class Lista{
                         rta=i;
 
                     }else{
-
+                        aux=aux.getEnlace();
                         i++;
                     }
             }
