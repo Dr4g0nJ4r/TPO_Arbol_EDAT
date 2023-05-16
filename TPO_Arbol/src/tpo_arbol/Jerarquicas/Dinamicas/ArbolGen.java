@@ -353,10 +353,10 @@ public class ArbolGen {
                 nodoHijo = nodoHijo.getHermano();
             }
             res += ")\n";
-            NodoGen nodoAux = nodo.getHermano();
-            while (nodoAux != null) {
-                toStringAux(nodoAux);
-                nodoAux = nodoAux.getHermano();
+            nodoHijo = nodo.getHijoIzquierdo();
+            while (nodoHijo != null) {
+                res +=" \n "+toStringAux(nodoHijo) ;
+                nodoHijo = nodoHijo.getHermano();
             }
         }
         return res;
