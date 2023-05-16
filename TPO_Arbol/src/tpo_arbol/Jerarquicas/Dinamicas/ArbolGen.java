@@ -115,8 +115,6 @@ public class ArbolGen {
         if (nodo==null) {
             rta=-1;
         }else{
-
-   
             int alturaAux=0;
             int alturaMayor=0;
             NodoGen hijo=nodo.getHijoIzquierdo();
@@ -416,6 +414,17 @@ public class ArbolGen {
     public boolean sonFrontera(Lista unaLista) {
         boolean resultado = false;
         // LUIS
+        //Comprobar que la lista no tenga repetidos
+        
+        //Comprobar que la lista contenga los elementos del árbol
+        //Detección de si está en la lista con localizar de Lista
+        return resultado;
+    }
+    
+    private boolean sonFronteraAux(NodoGen nodo, Lista lista, int cant)
+    {
+        boolean resultado = false;
+        
         return resultado;
     }
 
