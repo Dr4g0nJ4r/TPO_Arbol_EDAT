@@ -417,6 +417,10 @@ public class ArbolGen {
     public boolean sonFrontera(Lista unaLista) {
         boolean resultado = false;
         // LUIS
+        //Valido que lista no tenga duplicados
+        //
+        //Pruebo que lista tenga todos los nodos hojas
+        resultado = sonFronteraAux(this.raiz, unaLista, 0, unaLista.longitud());
         return resultado;
     }
 
