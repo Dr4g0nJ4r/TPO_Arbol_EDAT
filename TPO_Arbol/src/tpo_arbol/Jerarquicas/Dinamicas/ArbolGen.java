@@ -108,8 +108,35 @@ public class ArbolGen {
         return alturaRecursivo(this.raiz);
     }
 
-    /** Método auxiliar de altura. Recorre el árbol y retorna su altura. */
     private int alturaRecursivo(NodoGen nodo) {
+
+        int rta;
+
+        if (nodo==null) {
+            rta=-1;
+        }else{
+
+   
+            int alturaAux=0;
+            int alturaMayor=0;
+            NodoGen hijo=nodo.getHijoIzquierdo();
+            while (hijo!=null) {
+                alturaAux=alturaRecursivo(hijo);
+                if (alturaAux>alturaMayor) {
+                    alturaMayor=alturaAux;
+                }
+                hijo=hijo.getHermano();
+            }
+            rta=alturaMayor+1;
+        }
+
+        return rta;
+        
+    }
+
+
+    /** Método auxiliar de altura. Recorre el árbol y retorna su altura. */
+    /* private int alturaRecursivo(NodoGen nodo) {
         int altura = -1;
         if (nodo != null) {
             if (nodo.getHijoIzquierdo() != null) {
@@ -127,7 +154,7 @@ public class ArbolGen {
             }
         }
         return altura;
-    }
+    } */
 
     /**
      * Devuelve el nivel de un elemento en el árbol. Si el elemento no existe en el
