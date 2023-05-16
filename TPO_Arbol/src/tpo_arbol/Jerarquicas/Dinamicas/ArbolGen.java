@@ -112,49 +112,49 @@ public class ArbolGen {
 
         int rta;
 
-        if (nodo==null) {
-            rta=-1;
-        }else{
+        if (nodo == null) {
+            rta = -1;
+        } else {
 
-   
-            int alturaAux=0;
-            int alturaMayor=0;
-            NodoGen hijo=nodo.getHijoIzquierdo();
-            while (hijo!=null) {
-                alturaAux=alturaRecursivo(hijo);
-                if (alturaAux>alturaMayor) {
-                    alturaMayor=alturaAux;
+            int alturaAux = 0;
+            int alturaMayor = 0;
+            NodoGen hijo = nodo.getHijoIzquierdo();
+            while (hijo != null) {
+                alturaAux = alturaRecursivo(hijo) + 1;
+                if (alturaAux > alturaMayor) {
+                    alturaMayor = alturaAux;
                 }
-                hijo=hijo.getHermano();
+                hijo = hijo.getHermano();
             }
-            rta=alturaMayor+1;
+            rta = alturaMayor;
         }
 
         return rta;
-        
+
     }
 
-
     /** Método auxiliar de altura. Recorre el árbol y retorna su altura. */
-    /* private int alturaRecursivo(NodoGen nodo) {
-        int altura = -1;
-        if (nodo != null) {
-            if (nodo.getHijoIzquierdo() != null) {
-                NodoGen nodoAux = nodo.getHijoIzquierdo();
-                int altura_aux;
-                int altura_mayor = 0;
-                while (nodoAux != null) {
-                    altura_aux = 1 + alturaRecursivo(nodo.getHijoIzquierdo());
-                    if (altura_aux > altura_mayor) {
-                        altura_mayor = altura_aux;
-                    }
-                    nodoAux = nodoAux.getHermano();
-                }
-                altura = altura_mayor;
-            }
-        }
-        return altura;
-    } */
+    /*
+     * private int alturaRecursivo(NodoGen nodo) {
+     * int altura = -1;
+     * if (nodo != null) {
+     * if (nodo.getHijoIzquierdo() != null) {
+     * NodoGen nodoAux = nodo.getHijoIzquierdo();
+     * int altura_aux;
+     * int altura_mayor = 0;
+     * while (nodoAux != null) {
+     * altura_aux = 1 + alturaRecursivo(nodo.getHijoIzquierdo());
+     * if (altura_aux > altura_mayor) {
+     * altura_mayor = altura_aux;
+     * }
+     * nodoAux = nodoAux.getHermano();
+     * }
+     * altura = altura_mayor;
+     * }
+     * }
+     * return altura;
+     * }
+     */
 
     /**
      * Devuelve el nivel de un elemento en el árbol. Si el elemento no existe en el
@@ -232,7 +232,7 @@ public class ArbolGen {
     public ArbolGen clone() {
         ArbolGen clon = new ArbolGen();
         if (!this.esVacio()) {
-            clon.insertar(this.raiz, null);
+            clon.insertar(this.raiz.getElemento(), null);
             cloneRecursivo(this.raiz, clon);
         }
         return clon;
@@ -244,13 +244,14 @@ public class ArbolGen {
      */
     private void cloneRecursivo(NodoGen nodo, ArbolGen arbol) {
         if (nodo != null) {
-            if (nodo.getHijoIzquierdo() != null) {
-                NodoGen nodoAux = nodo.getHijoIzquierdo();
-                while (nodoAux != null) {
-                    arbol.insertar(nodoAux.getElemento(), nodo.getElemento());
-                    nodoAux.getHermano();
-                }
+
+            NodoGen nodoAux = nodo.getHijoIzquierdo();
+            while (nodoAux != null) {
+                arbol.insertar(nodoAux.getElemento(), nodo.getElemento());
+                cloneRecursivo(nodoAux, arbol);
+                nodoAux = nodoAux.getHermano();
             }
+
         }
     }
 
