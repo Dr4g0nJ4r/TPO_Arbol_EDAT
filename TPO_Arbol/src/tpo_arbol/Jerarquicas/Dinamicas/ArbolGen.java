@@ -420,6 +420,12 @@ public class ArbolGen {
         return resultado;
     }
 
+    private boolean sonFronteraAux(NodoGen nodo, Lista lista, int cant)
+    {
+        boolean resultado = false;
+        
+        return resultado;
+    }
     public boolean equals(ArbolGen unArbol) {
         boolean resultado = false;
 
