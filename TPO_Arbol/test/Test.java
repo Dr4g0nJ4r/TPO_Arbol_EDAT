@@ -60,12 +60,32 @@ public class Test {
         lista.insertar(5, 2);
         lista.insertar(9, 3);
         lista.insertar(7, 4);
-        //lista.insertar(3, 5);
+        lista.insertar(3, 5);
+        lista.insertar(23, 6);
         //imprimo Lista
         System.out.println("Lista: " + lista.toString());
         //Imprimo árbol
         System.out.println("ArbolGen: " + arbolGen.toString());
         //Verifico resultado de sonFrontera
         System.out.println("sonFrontera: " + arbolGen.sonFrontera(lista));
+        //Valido que lista no tenga duplicados
+        int aux = 1;
+        int aux2 = 2;
+        boolean duplicado = false;
+        while(aux <= lista.longitud() && !duplicado)
+        {
+            Object elem = lista.recuperar(aux);
+            aux2= aux+1;
+            while(aux2 <= lista.longitud() && !duplicado){
+                if(elem.equals(lista.recuperar(aux2)))
+                {
+                    duplicado = true;
+                }else{
+                    aux2++;
+                }
+            }
+            aux++;
+        }
+        System.out.println("Lista es duplicada? : " + duplicado);
     }
 }
