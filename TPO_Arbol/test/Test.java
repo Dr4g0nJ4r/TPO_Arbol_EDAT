@@ -1,6 +1,6 @@
 
 import tpo_arbol.Jerarquicas.Dinamicas.ArbolGen;
-
+import tpo_arbol.Lineales.Dinamicas.*;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -36,5 +36,7 @@ public class Test {
         //TEST DE EQUALS
         
         //TEST DE SONFRONTERA
+        ArbolGen arbolGen = new ArbolGen();
+        Lista lista = new Lista();
     }
 }
