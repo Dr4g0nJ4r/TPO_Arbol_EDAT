@@ -2,7 +2,7 @@ package tpo_arbol.Jerarquicas.Dinamicas;
 
 import tpo_arbol.Lineales.Dinamicas.Lista;
 import tpo_arbol.Lineales.Dinamicas.Pila;
-
+import tpo_arbol.Lineales.Dinamicas.Cola;
 /** ArbolGenerico */
 public class ArbolGen {
     private NodoGen raiz;
@@ -426,8 +426,35 @@ public class ArbolGen {
 
     private boolean sonFronteraAux(NodoGen nodo, Lista lista, int cantHojas, int largoLista)
     {
-        boolean resultado = false;
-        
+        boolean resultado = true;
+        if(nodo != null)
+        {
+            //Si la condición se cumple, significa que el nodo es hoja/frontera. Sino recorre los nodos hijos
+            if(nodo.getHijoIzquierdo() == null)
+            {
+                //Si la condición se cumple, no existe el nodo en la lista.
+                if(lista.localizar(nodo.getElemento())== -1)
+                {
+                    resultado = false;
+                }else{
+                    cantHojas++;
+                    //Si se cumple la condición, significa que hay más nodos hoja/frontera que los que tiene la lista
+                    if(cantHojas > largoLista)
+                    {
+                        resultado = false;
+                    }
+                }
+                //Recorre hermano
+            }else{
+               //Recorre hijo
+               resultado = sonFronteraAux(nodo.getHijoIzquierdo(), lista, cantHojas, largoLista);
+               //Recorre Nodo Hermano si hasta ahora los nodos hojas están en la lista.
+               if(resultado)
+               {
+                   resultado = sonFronteraAux(nodo.getHermano(), lista, cantHojas, largoLista);
+               }  
+            }
+        }
         return resultado;
     }
     
