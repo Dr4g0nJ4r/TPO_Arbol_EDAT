@@ -71,10 +71,12 @@ public class ArbolGen {
     /**
      * Dado un elemento devuelve el valor almacenado en su nodo padre(busca la
      * primera aparición de elemento)
+     * 
      * @param elemento
      * @return Object
      */
     public Object padre(Object elemento) {
+        
         return padreAux(this.raiz, elemento);
     }
 
@@ -89,8 +91,15 @@ public class ArbolGen {
                     padre = nodo.getElemento();
                 } else {
                     padre = padreAux(nodoHijo, elemento);
-                    if(nodoHijo.getHermano() != null && padre == null) {
-                        padre = padreAux(nodoHijo.getHermano(), elemento);
+                    NodoGen nodoAux = nodoHijo.getHermano();
+                    while (nodoAux != null && padre == null) {
+
+                        if (nodoAux.getElemento().equals(elemento)) {
+                            padre = nodo.getElemento();
+                        } else {
+                            padre = padreAux(nodoAux, elemento);
+                            nodoAux = nodoAux.getHermano();
+                        }
                     }
                 }
 
@@ -417,8 +426,7 @@ public class ArbolGen {
     public boolean sonFrontera(Lista unaLista) {
         boolean resultado = false;
         // LUIS
-        if(!unaLista.esVacia())
-        {
+        if (!unaLista.esVacia()) {
             // Valido que lista no tenga duplicados
             int aux = 1;
             int aux2 = 2;
@@ -462,7 +470,7 @@ public class ArbolGen {
         }
         return resultado;
     }
-    
+
     public boolean equals(ArbolGen unArbol) {
         boolean resultado = false;
 
