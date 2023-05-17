@@ -3,6 +3,7 @@ package tpo_arbol.Jerarquicas.Dinamicas;
 import tpo_arbol.Lineales.Dinamicas.Lista;
 import tpo_arbol.Lineales.Dinamicas.Pila;
 import tpo_arbol.Lineales.Dinamicas.Cola;
+
 /** ArbolGenerico */
 public class ArbolGen {
     private NodoGen raiz;
@@ -417,60 +418,53 @@ public class ArbolGen {
     public boolean sonFrontera(Lista unaLista) {
         boolean resultado = false;
         // LUIS
-        //Valido que lista no tenga duplicados
+        // Valido que lista no tenga duplicados
         int aux = 1;
         int aux2 = 2;
         boolean duplicado = false;
-        while(aux <= unaLista.longitud() && !duplicado)
-        {
+        while (aux <= unaLista.longitud() && !duplicado) {
             Object elem = unaLista.recuperar(aux);
-            aux2= aux+1;
-            while(aux2 <= unaLista.longitud() && !duplicado){
-                if(elem.equals(unaLista.recuperar(aux2)))
-                {
+            aux2 = aux + 1;
+            while (aux2 <= unaLista.longitud() && !duplicado) {
+                if (elem.equals(unaLista.recuperar(aux2))) {
                     duplicado = true;
-                }else{
+                } else {
                     aux2++;
                 }
             }
             aux++;
         }
-        if(!duplicado)
-        {
-           //Pruebo que lista tenga todos los nodos hojas
-            resultado = sonFronteraAux(this.raiz, unaLista); 
+        if (!duplicado) {
+            // Pruebo que lista tenga todos los nodos hojas
+            resultado = sonFronteraAux(this.raiz, unaLista);
         }
-        //retorna el valor de la operación
+        // retorna el valor de la operación
         return resultado;
     }
 
-    private boolean sonFronteraAux(NodoGen nodo, Lista lista)
-    {
+    private boolean sonFronteraAux(NodoGen nodo, Lista lista) {
         boolean resultado = true;
-        if(nodo != null)
-        {
-            //Si la condición se cumple, significa que el nodo es hoja/frontera. Sino recorre los nodos hijos
-            if(nodo.getHijoIzquierdo() == null && lista.localizar(nodo.getElemento())== -1)
-            {
+        if (nodo != null) {
+            // Si la condición se cumple, significa que el nodo es hoja/frontera. Sino
+            // recorre los nodos hijos
+            if (nodo.getHijoIzquierdo() == null && lista.localizar(nodo.getElemento()) == -1) {
                 resultado = false;
-            }else{
-               //Recorre hijo
-               resultado = sonFronteraAux(nodo.getHijoIzquierdo(), lista);
+            } else {
+                // Recorre hijo
+                resultado = sonFronteraAux(nodo.getHijoIzquierdo(), lista);
             }
-            //Recorre Nodo Hermano si hasta ahora los nodos hojas están en la lista.
-            if(resultado && nodo.getHermano()!= null)
-            {
+            // Recorre Nodo Hermano si hasta ahora los nodos hojas están en la lista.
+            if (resultado && nodo.getHermano() != null) {
                 resultado = sonFronteraAux(nodo.getHermano(), lista);
-            } 
+            }
         }
         return resultado;
     }
-    
     
     public boolean equals(ArbolGen unArbol) {
         boolean resultado = false;
 
-        if (this.raiz == null && unArbol.raiz == null) {
+        if (this.raiz != null && unArbol.raiz != null) {
 
             resultado = equalsAux(this.raiz, unArbol.raiz);
         }
@@ -480,23 +474,25 @@ public class ArbolGen {
 
     private boolean equalsAux(NodoGen nodoThis, NodoGen nodoUnArbol) {
 
-        boolean rta = false;
+        boolean rta = true;
 
-        if (nodoThis.getElemento().equals(nodoUnArbol.getElemento())) {
-            rta = true;
-            if (nodoThis.getHijoIzquierdo() != null) {
-                rta = equalsAux(nodoThis.getHijoIzquierdo(),
-                        nodoUnArbol.getHijoIzquierdo());
-            }
+        if (nodoThis != null) {
+            if (nodoThis.getElemento().equals(nodoUnArbol.getElemento())) {
 
-            if (rta && nodoThis.getHermano() != null) {
+                NodoGen nodoThisHijo = nodoThis.getHijoIzquierdo();
+                NodoGen nodoUnArbolHijo = nodoUnArbol.getHijoIzquierdo();
 
-                rta = equalsAux(nodoThis.getHermano(),
-                        nodoUnArbol.getHermano());
+                while (nodoThisHijo != null && nodoUnArbolHijo != null && rta) {
+                    rta = equalsAux(nodoThisHijo, nodoUnArbolHijo);
+                    nodoThisHijo = nodoThisHijo.getHermano();
+                    nodoUnArbolHijo = nodoUnArbolHijo.getHermano();
+                }
+
+            } else {
+                rta = false;
             }
 
         }
-
         return rta;
     }
 }
