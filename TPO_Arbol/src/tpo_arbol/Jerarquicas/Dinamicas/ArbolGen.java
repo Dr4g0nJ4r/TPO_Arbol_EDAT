@@ -418,25 +418,28 @@ public class ArbolGen {
     public boolean sonFrontera(Lista unaLista) {
         boolean resultado = false;
         // LUIS
-        // Valido que lista no tenga duplicados
-        int aux = 1;
-        int aux2 = 2;
-        boolean duplicado = false;
-        while (aux <= unaLista.longitud() && !duplicado) {
-            Object elem = unaLista.recuperar(aux);
-            aux2 = aux + 1;
-            while (aux2 <= unaLista.longitud() && !duplicado) {
-                if (elem.equals(unaLista.recuperar(aux2))) {
-                    duplicado = true;
-                } else {
-                    aux2++;
+        if(!unaLista.esVacia())
+        {
+            // Valido que lista no tenga duplicados
+            int aux = 1;
+            int aux2 = 2;
+            boolean duplicado = false;
+            while (aux <= unaLista.longitud() && !duplicado) {
+                Object elem = unaLista.recuperar(aux);
+                aux2 = aux + 1;
+                while (aux2 <= unaLista.longitud() && !duplicado) {
+                    if (elem.equals(unaLista.recuperar(aux2))) {
+                        duplicado = true;
+                    } else {
+                        aux2++;
+                    }
                 }
+                aux++;
             }
-            aux++;
-        }
-        if (!duplicado) {
-            // Pruebo que lista tenga todos los nodos hojas
-            resultado = sonFronteraAux(this.raiz, unaLista);
+            if (!duplicado) {
+                // Pruebo que lista tenga todos los nodos hojas
+                resultado = sonFronteraAux(this.raiz, unaLista);
+            }
         }
         // retorna el valor de la operación
         return resultado;
