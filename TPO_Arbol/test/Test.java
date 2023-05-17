@@ -258,10 +258,10 @@ public class Test {
         b.insertar(11, 10);
         b.insertar(7, 9);
         b.insertar(3, 9);
-        b.insertar(12, 15);
-        b.insertar(20, 15);
-        b.insertar(22, 15);
-        b.insertar(30, 15);
+        b.insertar(12, 11);
+        b.insertar(20, 11);
+        b.insertar(22, 11);
+        b.insertar(30, 11);
         b.insertar(40, 30);
         b.insertar(45, 30);
         b.insertar(55, 30);
@@ -279,7 +279,7 @@ public class Test {
                 + "\n                                                     40    45    55"
                 + "\n");
 
-        System.out.println("Es el arbol a igual al arbol b? " + sOk + " --> " + ((a.equals(b) ? sOk : sErr)));
+        System.out.println("Es el arbol a igual al arbol b? " + sErr + " --> " + ((a.equals(b) ? sOk : sErr)));
 
         a.vaciar();
         b.vaciar();
@@ -311,8 +311,8 @@ public class Test {
                 + "\n");
 
         b.insertar(11, 1);
-        b.insertar(9, 10);
-        b.insertar(15, 10);
+        b.insertar(9, 11);
+        b.insertar(15, 11);
         b.insertar(7, 9);
         b.insertar(3, 9);
         b.insertar(12, 15);
@@ -336,13 +336,13 @@ public class Test {
                 + "\n                                                     40    45    55"
                 + "\n");
 
-        System.out.println("Es el arbol a igual al arbol b? " + sOk + " --> " + ((a.equals(b) ? sOk : sErr)));
+        System.out.println("Es el arbol a igual al arbol b? " + sErr + " --> " + ((a.equals(b) ? sOk : sErr)));
         a.vaciar();
         b.vaciar();
 
         a.insertar(11, 1);
-        a.insertar(9, 10);
-        a.insertar(15, 10);
+        a.insertar(9, 11);
+        a.insertar(15, 11);
         a.insertar(7, 9);
         a.insertar(3, 9);
         a.insertar(12, 15);
@@ -367,8 +367,8 @@ public class Test {
                 + "\n");
 
         b.insertar(11, 1);
-        b.insertar(9, 10);
-        b.insertar(15, 10);
+        b.insertar(9, 11);
+        b.insertar(15, 11);
         b.insertar(7, 9);
         b.insertar(3, 9);
         b.insertar(12, 15);
@@ -392,7 +392,66 @@ public class Test {
                 + "\n                                                     40    45    56"
                 + "\n");
 
-        System.out.println("Es el arbol a igual al arbol b? " + sOk + " --> " + ((a.equals(b) ? sOk : sErr)));
+        System.out.println("Es el arbol a igual al arbol b? " + sErr + " --> " + ((a.equals(b) ? sOk : sErr)));
+
+        a.vaciar();
+        b.vaciar();
+
+        a.insertar(10, 1);
+        a.insertar(9, 10);
+        a.insertar(15, 10);
+        a.insertar(13, 10);
+        a.insertar(7, 9);
+        a.insertar(3, 9);
+        a.insertar(12, 15);
+        a.insertar(20, 15);
+        a.insertar(22, 15);
+        a.insertar(30, 15);
+        a.insertar(40, 30);
+        a.insertar(45, 30);
+        a.insertar(55, 30);
+
+        System.out.println("\n Arbol a.toString()  es: \n"
+                + "\n                                             10"
+                + "\n                +----------------------------+--------------------------+"
+                + "\n                |                            |                          |"
+                + "\n                9                            15                         13"
+                + "\n            +---+---+              +-------+--+---+-------+"
+                + "\n            |       |              |       |      |       |"
+                + "\n            7       3              12     20     22       30"
+                + "\n                                                     +-----+-----+"
+                + "\n                                                     |     |     |"
+                + "\n                                                     40    45    55"
+                + "\n");
+
+        b.insertar(10, 1);
+        b.insertar(9, 10);
+        b.insertar(11, 10);
+        b.insertar(13, 10);
+        b.insertar(7, 9);
+        b.insertar(3, 9);
+        b.insertar(12, 11);
+        b.insertar(20, 11);
+        b.insertar(22, 11);
+        b.insertar(30, 11);
+        b.insertar(40, 30);
+        b.insertar(45, 30);
+        b.insertar(55, 30);
+
+        System.out.println("\n Arbol b.toString() es: \n"
+                + "\n                                             10"
+                + "\n                +----------------------------+--------------------------+"
+                + "\n                |                            |                          |"
+                + "\n                9                            15                         13"
+                + "\n            +---+---+              +-------+--+---+-------+"
+                + "\n            |       |              |       |      |       |"
+                + "\n            7       3              12     20     22       30"
+                + "\n                                                     +-----+-----+"
+                + "\n                                                     |     |     |"
+                + "\n                                                     40    45    55"
+                + "\n");
+
+        System.out.println("Es el arbol a igual al arbol b? " + sErr + " --> " + ((a.equals(b) ? sOk : sErr)));
     }
     private static boolean contieneDuplicado(Lista lista){
         int aux = 1;
