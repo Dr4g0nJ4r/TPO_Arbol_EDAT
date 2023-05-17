@@ -112,6 +112,16 @@ public class Test {
         System.out.println("********************************");
         System.out.println("*      Pruebas con Arbol x     *");
         System.out.println("********************************");
+        System.out.println("\n Arbol x.toString()  es: \n"
+                + "\n                                15"
+                + "\n                +---------------+----------------+"
+                + "\n                |               |                |"
+                + "\n                10              19               21"
+                + "\n            +---+---+      +----+----+       +---+---+"
+                + "\n            |       |      |         |       |       |"
+                + "\n            1       5      9         7       3       4"
+                + "\n ");
+        System.out.println("Lista: " + lista.toString());
         System.out.println("¿La lista tiene duplicados? " + sOk + " --> " + ((contieneDuplicado(lista) ? sOk : sErr)));
         System.out.println("¿Estan todos los nodos hojas en la lista? " + sOk + " --> " + ((x.sonFrontera(lista) ? sOk : sErr)));
         System.out.println("********************************");
@@ -126,6 +136,19 @@ public class Test {
         System.out.println("********************************");
         System.out.println("*       Pruebas con Arbol a    *");
         System.out.println("********************************");
+        System.out.println("\n Arbol a.toString()  es: \n"
+                + "\n                                10"
+                + "\n                +---------------+------------+"
+                + "\n                |                            |"
+                + "\n                9                            15"
+                + "\n            +---+---+              +-------+--+---+-------+"
+                + "\n            |       |              |       |      |       |"
+                + "\n            7       3              12     20     22       30"
+                + "\n                                                     +-----+-----+"
+                + "\n                                                     |     |     |"
+                + "\n                                                     40    45    55"
+                + "\n");
+        System.out.println("Lista: " + lista.toString());
         System.out.println("¿La lista tiene duplicados? " + sOk + " --> " + ((contieneDuplicado(lista) ? sOk : sErr)));
         System.out.println("¿Estan todos los nodos hojas en la lista? " + sOk + " --> " + ((a.sonFrontera(lista) ? sOk : sErr)));
         System.out.println("********************************");
