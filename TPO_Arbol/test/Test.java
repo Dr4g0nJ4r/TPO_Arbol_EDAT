@@ -1,4 +1,5 @@
 
+
 import tpo_arbol.Jerarquicas.Dinamicas.ArbolGen;
 import tpo_arbol.Lineales.Dinamicas.*;
 /*
@@ -33,63 +34,127 @@ public class Test {
 
     public static void main(String args[]) {
 
-        // TEST DE SONFRONTERA
-        ArbolGen arbolGen = new ArbolGen();
-        Lista lista = new Lista();
-        // Arbol genérico compuesto de:
-        /*
-         * 15
-         * / | \
-         * 10 19 21
-         * / \ / \ /
-         * 1 5 9 7 3
-         */
-        arbolGen.insertar(15, null);
-        arbolGen.insertar(10, 15);
-        arbolGen.insertar(19, 15);
-        arbolGen.insertar(21, 15);
-        arbolGen.insertar(1, 10);
-        arbolGen.insertar(5, 10);
-        arbolGen.insertar(9, 19);
-        arbolGen.insertar(7, 19);
-        arbolGen.insertar(3, 21);
-        // Lista compuesta de 1,5,9,7,3
-        lista.insertar(1, 1);
-        lista.insertar(5, 2);
-        lista.insertar(9, 3);
-        lista.insertar(7, 4);
-        lista.insertar(3, 5);
-        lista.insertar(23, 6);
-        // imprimo Lista
-        System.out.println("Lista: " + lista.toString());
-        // Imprimo árbol
-        System.out.println("ArbolGen: " + arbolGen.toString());
-        // Verifico resultado de sonFrontera
-        System.out.println("sonFrontera: " + arbolGen.sonFrontera(lista));
-        // Valido que lista no tenga duplicados
-        int aux = 1;
-        int aux2 = 2;
-        boolean duplicado = false;
-        while (aux <= lista.longitud() && !duplicado) {
-            Object elem = lista.recuperar(aux);
-            aux2 = aux + 1;
-            while (aux2 <= lista.longitud() && !duplicado) {
-                if (elem.equals(lista.recuperar(aux2))) {
-                    duplicado = true;
-                } else {
-                    aux2++;
-                }
-            }
-            aux++;
-        }
-        System.out.println("Lista es duplicada? : " + duplicado);
-
+        testFrontera();
         testEquals();
 
     }
 
-    public static void testEquals() {
+    public static void testFrontera(){
+        System.out.println(ANSI_CYAN_BACKGROUND + ROJO + "**************************************************************");
+        System.out.println(ANSI_CYAN_BACKGROUND + ROJO + "*                  Test metodo sonFrontera()                 *");
+        System.out.println(ANSI_CYAN_BACKGROUND + ROJO + "**************************************************************" + "\n\n" + RESET);
+        // TEST DE SONFRONTERA
+        ArbolGen x = new ArbolGen();
+        ArbolGen a = new ArbolGen();
+        ArbolGen b = new ArbolGen();
 
+        System.out.println("********************************");
+        System.out.println("*    Carga de datos inicial    *");
+        System.out.println("********************************");
+        
+        System.out.println("\n Arbol x.toString()  es: \n"
+                + "\n                                15"
+                + "\n                +---------------+----------------+"
+                + "\n                |               |                |"
+                + "\n                10              19               21"
+                + "\n            +---+---+      +----+----+       +---+---+"
+                + "\n            |       |      |         |       |       |"
+                + "\n            1       5      9         7       3       4"
+                + "\n ");
+
+        x.insertar(15, null);
+        x.insertar(10, 15);
+        x.insertar(19, 15);
+        x.insertar(21, 15);
+        x.insertar(1, 10);
+        x.insertar(5, 10);
+        x.insertar(9, 19);
+        x.insertar(7, 19);
+        x.insertar(3, 21);
+        x.insertar(4, 21);
+
+        a.insertar(10, 1);
+        a.insertar(9, 10);
+        a.insertar(15, 10);
+        a.insertar(7, 9);
+        a.insertar(3, 9);
+        a.insertar(12, 15);
+        a.insertar(20, 15);
+        a.insertar(22, 15);
+        a.insertar(30, 15);
+        a.insertar(40, 30);
+        a.insertar(45, 30);
+        a.insertar(55, 30);
+
+        System.out.println("\n Arbol a.toString()  es: \n"
+                + "\n                                10"
+                + "\n                +---------------+------------+"
+                + "\n                |                            |"
+                + "\n                9                            15"
+                + "\n            +---+---+              +-------+--+---+-------+"
+                + "\n            |       |              |       |      |       |"
+                + "\n            7       3              12     20     22       30"
+                + "\n                                                     +-----+-----+"
+                + "\n                                                     |     |     |"
+                + "\n                                                     40    45    55"
+                + "\n");
+        
+        Lista lista = new Lista();
+        // Lista compuesta de 1,5,9,7,3
+        lista.insertar(1, 1);
+        lista.insertar(7, 2);
+        lista.insertar(3, 3);
+        lista.insertar(4, 4);
+        lista.insertar(5, 5);
+        lista.insertar(9, 6);
+        // imprimo Lista     
+        System.out.println("Lista: " + lista.toString());
+        System.out.println("********************************");
+        System.out.println("*      Pruebas con Arbol x     *");
+        System.out.println("********************************");
+        System.out.println("¿La lista tiene duplicados? " + sOk + " --> " + ((contieneDuplicado(lista) ? sOk : sErr)));
+        System.out.println("¿Estan todos los nodos hojas en la lista? " + sOk + " --> " + ((x.sonFrontera(lista) ? sOk : sErr)));
+        System.out.println("********************************");
+        System.out.println("* Pruebas con lista duplicados *");
+        System.out.println("********************************");
+        lista.insertar(7, 7);
+        System.out.println("Insertar 7 a la lista: " + lista.toString());
+        System.out.println("¿La lista tiene duplicados? " + sOk + " --> " + ((contieneDuplicado(lista) ? sOk : sErr)));
+        System.out.println("¿Estan todos los nodos hojas en la lista? " + sOk + " --> " + ((x.sonFrontera(lista) ? sOk : sErr)));
+        lista.eliminar(7);
+        System.out.println("Eliminar 7 a la lista: " + lista.toString());
+        System.out.println("********************************");
+        System.out.println("*       Pruebas con Arbol a    *");
+        System.out.println("********************************");
+        System.out.println("¿La lista tiene duplicados? " + sOk + " --> " + ((contieneDuplicado(lista) ? sOk : sErr)));
+        System.out.println("¿Estan todos los nodos hojas en la lista? " + sOk + " --> " + ((a.sonFrontera(lista) ? sOk : sErr)));
+        System.out.println("********************************");
+        System.out.println("*       Modifico Arbol x       *");
+        System.out.println("********************************");
+        System.out.println("\n Arbol x.toString()  es: \n"
+                + "\n                                15"
+                + "\n                +---------------+----------------+"
+                + "\n                |               |                |"
+                + "\n                10              19               21"
+                + "\n            +---+---+      +----+----+       +---+---+"
+                + "\n            |       |      |         |       |       |"
+                + "\n            1       5      9         7       3       4"
+                + "\n                                                     +---+"
+                + "\n                                                         |"
+                + "\n                                                         15"
+                + "\n ");
+        x.insertar(15, 4);
+        System.out.println("Insertar 15 en árbol x");
+        System.out.println("Lista: " + lista.toString());
+        System.out.println("¿Estan todos los nodos hojas en la lista? " + sOk + " --> " + ((a.sonFrontera(lista) ? sOk : sErr)));
+        lista.insertar(15,7);
+        System.out.println("Insertar 15 a la lista: " + lista.toString());
+        System.out.println("¿Estan todos los nodos hojas en la lista? " + sOk + " --> " + ((x.sonFrontera(lista) ? sOk : sErr)));
+    }
+    public static void testEquals() {
+        System.out.println(ANSI_CYAN_BACKGROUND + ROJO + "**************************************************************");
+        System.out.println(ANSI_CYAN_BACKGROUND + ROJO + "*                  Test metodo equals()                      *");
+        System.out.println(ANSI_CYAN_BACKGROUND + ROJO + "**************************************************************" + "\n\n" + RESET);
         ArbolGen x = new ArbolGen();
         ArbolGen z = new ArbolGen();
         ArbolGen a = new ArbolGen();
@@ -116,7 +181,7 @@ public class Test {
         x.insertar(3, 21);
         x.insertar(4, 21);
 
-        System.out.println("\n Arbol x.toString()  es: \n"
+        System.out.println("\n Arbol z.toString()  es: \n"
                 + "\n                                15"
                 + "\n                +---------------+----------------+"
                 + "\n                |               |                |"
@@ -306,5 +371,22 @@ public class Test {
 
         System.out.println("Es el arbol a igual al arbol b? " + sOk + " --> " + ((a.equals(b) ? sOk : sErr)));
     }
-
+    private static boolean contieneDuplicado(Lista lista){
+        int aux = 1;
+        int aux2 = 2;
+        boolean duplicado = false;
+        while (aux <= lista.longitud() && !duplicado) {
+            Object elem = lista.recuperar(aux);
+            aux2 = aux + 1;
+            while (aux2 <= lista.longitud() && !duplicado) {
+                if (elem.equals(lista.recuperar(aux2))) {
+                    duplicado = true;
+                } else {
+                    aux2++;
+                }
+            }
+            aux++;
+        }
+        return duplicado;
+    }
 }
