@@ -71,6 +71,8 @@ public class ArbolGen {
     /**
      * Dado un elemento devuelve el valor almacenado en su nodo padre(busca la
      * primera aparición de elemento)
+     * @param elemento
+     * @return Object
      */
     public Object padre(Object elemento) {
         return padreAux(this.raiz, elemento);
@@ -83,15 +85,12 @@ public class ArbolGen {
         if (nodo != null) {
             NodoGen nodoHijo = nodo.getHijoIzquierdo();
             if (nodoHijo != null) {
-                if (nodoHijo.equals(elemento)) {
-                    padre = nodoHijo.getElemento();
+                if (nodoHijo.getElemento().equals(elemento)) {
+                    padre = nodo.getElemento();
                 } else {
-                    while (nodoHijo.getHermano() != null && padre != null) {
-                        if (nodoHijo.equals(elemento)) {
-                            padre = nodo.getElemento();
-                        } else {
-                            nodoHijo = nodoHijo.getHermano();
-                        }
+                    padre = padreAux(nodoHijo, elemento);
+                    if(nodoHijo.getHermano() != null && padre == null) {
+                        padre = padreAux(nodoHijo.getHermano(), elemento);
                     }
                 }
 
