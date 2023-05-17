@@ -38,5 +38,34 @@ public class Test {
         //TEST DE SONFRONTERA
         ArbolGen arbolGen = new ArbolGen();
         Lista lista = new Lista();
+        //Arbol genérico compuesto de:
+        /*
+                         15
+                      /   |   \
+                10       19      21
+               /  \     /  \    /
+              1    5   9    7  3
+        */
+        arbolGen.insertar(15, null);
+        arbolGen.insertar(10, 15);
+        arbolGen.insertar(19, 15);
+        arbolGen.insertar(21, 15);
+        arbolGen.insertar(1, 10);
+        arbolGen.insertar(5, 10);
+        arbolGen.insertar(9, 19);
+        arbolGen.insertar(7, 19);
+        arbolGen.insertar(3, 21);
+        //Lista compuesta de 1,5,9,7,3
+        lista.insertar(1, 1);
+        lista.insertar(5, 2);
+        lista.insertar(9, 3);
+        lista.insertar(7, 4);
+        //lista.insertar(3, 5);
+        //imprimo Lista
+        System.out.println("Lista: " + lista.toString());
+        //Imprimo árbol
+        System.out.println("ArbolGen: " + arbolGen.toString());
+        //Verifico resultado de sonFrontera
+        System.out.println("sonFrontera: " + arbolGen.sonFrontera(lista));
     }
 }

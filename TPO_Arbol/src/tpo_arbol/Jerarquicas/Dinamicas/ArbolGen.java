@@ -420,40 +420,28 @@ public class ArbolGen {
         //Valido que lista no tenga duplicados
         //
         //Pruebo que lista tenga todos los nodos hojas
-        resultado = sonFronteraAux(this.raiz, unaLista, 0, unaLista.longitud());
+        resultado = sonFronteraAux(this.raiz, unaLista);
         return resultado;
     }
 
-    private boolean sonFronteraAux(NodoGen nodo, Lista lista, int cantHojas, int largoLista)
+    private boolean sonFronteraAux(NodoGen nodo, Lista lista)
     {
         boolean resultado = true;
         if(nodo != null)
         {
             //Si la condición se cumple, significa que el nodo es hoja/frontera. Sino recorre los nodos hijos
-            if(nodo.getHijoIzquierdo() == null)
+            if(nodo.getHijoIzquierdo() == null && lista.localizar(nodo.getElemento())== -1)
             {
-                //Si la condición se cumple, no existe el nodo en la lista.
-                if(lista.localizar(nodo.getElemento())== -1)
-                {
-                    resultado = false;
-                }else{
-                    cantHojas++;
-                    //Si se cumple la condición, significa que hay más nodos hoja/frontera que los que tiene la lista
-                    if(cantHojas > largoLista)
-                    {
-                        resultado = false;
-                    }
-                }
-                //Recorre hermano
+                resultado = false;
             }else{
                //Recorre hijo
-               resultado = sonFronteraAux(nodo.getHijoIzquierdo(), lista, cantHojas, largoLista);
-               //Recorre Nodo Hermano si hasta ahora los nodos hojas están en la lista.
-               if(resultado)
-               {
-                   resultado = sonFronteraAux(nodo.getHermano(), lista, cantHojas, largoLista);
-               }  
+               resultado = sonFronteraAux(nodo.getHijoIzquierdo(), lista);
             }
+            //Recorre Nodo Hermano si hasta ahora los nodos hojas están en la lista.
+            if(resultado && nodo.getHermano()!= null)
+            {
+                resultado = sonFronteraAux(nodo.getHermano(), lista);
+            } 
         }
         return resultado;
     }
