@@ -76,8 +76,9 @@ public class ArbolGen {
      * @return Object
      */
     public Object padre(Object elemento) {
-        
-        return padreAux(this.raiz, elemento);
+     Object rta;
+        if(this.raiz == null || this.raiz.getElemento().equals(elemento)){ rta = null;}else{ rta=padreAux(this.raiz, elemento);}
+        return rta;
     }
 
     // Método auxiliar que retorna el elemento del nodo padre del elemento buscado.
