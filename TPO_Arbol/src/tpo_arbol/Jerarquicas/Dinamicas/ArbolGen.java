@@ -2,7 +2,6 @@ package tpo_arbol.Jerarquicas.Dinamicas;
 
 import tpo_arbol.Lineales.Dinamicas.Lista;
 import tpo_arbol.Lineales.Dinamicas.Pila;
-import tpo_arbol.Lineales.Dinamicas.Cola;
 
 /** ArbolGenerico */
 public class ArbolGen {
@@ -205,14 +204,47 @@ public class ArbolGen {
             listaAncestros.insertar(pilaAncestros.obtenerTope(), listaAncestros.longitud() + 1);
             pilaAncestros.desapilar();
         }
+
+        listaAncestros.eliminar(listaAncestros.longitud());
+        listaAncestros.eliminar(listaAncestros.longitud());
+
         return listaAncestros;
+    }
+
+    private void ancestroRecursivo(NodoGen nodo, Object elemento, Pila pila) {
+
+         
+            
+            if (nodo != null) {
+                if (nodo.getElemento().equals(elemento)) {
+                    pila.apilar(nodo.getElemento());
+                } else {
+                    NodoGen nodoAux = nodo.getHijoIzquierdo();
+                    while (nodoAux != null) {
+
+                        ancestroRecursivo(nodoAux, elemento, pila);
+                        if (pila.esVacia()) {
+                            nodoAux = nodoAux.getHermano();    
+                        }else{
+                             nodoAux = null;
+                        }
+                        
+                    }
+                
+                }
+            }
+        
+            if (!pila.esVacia()) {
+                pila.apilar(nodo.getElemento());
+            }
+
     }
 
     /**
      * Método privado recursivo. Busca un elemento y agrega a la Pila los elementos
      * padres
      */
-    private boolean ancestroRecursivo(NodoGen nodo, Object elemento, Pila pila) {
+    /* private boolean ancestroRecursivo(NodoGen nodo, Object elemento, Pila pila) {
         boolean encontrado = false;
         if (nodo != null) {
             if (nodo.getElemento().equals(elemento)) {
@@ -233,7 +265,7 @@ public class ArbolGen {
             }
         }
         return encontrado;
-    }
+    } */
 
     /**
      * Genera y devuelve un árbol genérico que es equivalente que el árbol original
