@@ -1,5 +1,6 @@
 package tpo_arbol.Jerarquicas.Dinamicas;
 
+import tpo_arbol.Lineales.Dinamicas.Cola;
 import tpo_arbol.Lineales.Dinamicas.Lista;
 import tpo_arbol.Lineales.Dinamicas.Pila;
 
@@ -377,7 +378,30 @@ public class ArbolGen {
      */
     public Lista listarPorNiveles() {
         Lista listado = new Lista();
-        listarPorNivelesAux(this.raiz, listado);
+        Cola cola = new Cola();
+        
+        if(this.raiz != null)
+        {  
+            NodoGen nodo;
+            cola.poner(this.raiz);
+            while(!cola.esVacia())
+            {
+                nodo = (NodoGen) cola.obtenerFrente();
+                listado.insertar(nodo.getElemento(), listado.longitud()+1);
+                if(nodo.getHijoIzquierdo()!= null)
+                {
+                    nodo = nodo.getHijoIzquierdo();
+                    cola.poner(nodo);
+                    while(nodo.getHermano() != null)
+                    {
+                        nodo = nodo.getHermano();
+                        cola.poner(nodo);
+                    }
+                }
+                cola.sacar();
+            }  
+        }
+        //listarPorNivelesAux(this.raiz, listado);
         return listado;
     }
 
