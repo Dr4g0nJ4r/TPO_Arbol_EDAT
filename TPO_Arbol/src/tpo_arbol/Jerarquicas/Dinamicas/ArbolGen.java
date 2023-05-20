@@ -205,17 +205,13 @@ public class ArbolGen {
             listaAncestros.insertar(pilaAncestros.obtenerTope(), listaAncestros.longitud() + 1);
             pilaAncestros.desapilar();
         }
-
-        listaAncestros.eliminar(listaAncestros.longitud());
         listaAncestros.eliminar(listaAncestros.longitud());
 
         return listaAncestros;
     }
 
     private void ancestroRecursivo(NodoGen nodo, Object elemento, Pila pila) {
-
-         
-            
+  
             if (nodo != null) {
                 if (nodo.getElemento().equals(elemento)) {
                     pila.apilar(nodo.getElemento());
@@ -227,16 +223,13 @@ public class ArbolGen {
                         if (pila.esVacia()) {
                             nodoAux = nodoAux.getHermano();    
                         }else{
-                             nodoAux = null;
+                            pila.apilar(nodo.getElemento());
+                            nodoAux = null;
                         }
                         
                     }
                 
                 }
-            }
-        
-            if (!pila.esVacia()) {
-                pila.apilar(nodo.getElemento());
             }
 
     }
