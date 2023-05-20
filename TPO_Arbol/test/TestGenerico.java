@@ -211,15 +211,15 @@ public class TestGenerico {
         System.out.println("Pruebas de métodos GRADO");
         System.out.println("------------------------");
         ArbolGen vacio = new ArbolGen();
-        /*
-        System.out.println("Grado de árbol completo: Tiene que dar 4: " + sOk + " --> " + (((int) a.grado() == 4) ? sOk : sErr));
+        
+        //System.out.println("Grado de árbol completo: Tiene que dar 4: " + sOk + " --> " + (((int) a.grado() == 4) ? sOk : sErr));
         System.out.println("Grado de subarbol con raiz 9: Tiene que dar 2: " + sOk + " --> " + (((int) a.gradoSubarbol(9) == 2) ? sOk : sErr));
         System.out.println("Grado de subarbol con raiz 15: Tiene que dar 4: " + sOk + " --> " + (((int) a.gradoSubarbol(15) == 4) ? sOk : sErr));
         System.out.println("Grado de subarbol con raiz 30: Tiene que dar 3: " + sOk + " --> " + (((int) a.gradoSubarbol(30) == 3) ? sOk : sErr));
         System.out.println("Grado de subarbol con raiz 45: Tiene que dar 0: " + sOk + " --> " + (((int) a.gradoSubarbol(45) == 0) ? sOk : sErr));
         System.out.println("Grado de subarbol con raiz inexistente 90: Tiene que dar -1: " + sOk + " --> " + (((int) a.gradoSubarbol(90) == -1) ? sOk : sErr));
-        System.out.println("Grado de árbol vacío: Tiene que dar -1: " + sOk + " --> " + (((int) vacio.grado() == -1) ? sOk : sErr));
-        */
+        //System.out.println("Grado de árbol vacío: Tiene que dar -1: " + sOk + " --> " + (((int) vacio.grado() == -1) ? sOk : sErr));
+        
     }
 
 }

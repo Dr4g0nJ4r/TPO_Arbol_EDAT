@@ -405,21 +405,50 @@ public class ArbolGen {
         return listado;
     }
 
-    /**
-     * Método privado que recorre los elementos del árbol por niveles y lo agrega a
-     * la Lista
-     */
-    private void listarPorNivelesAux(NodoGen nodo, Lista lista) {
-        if (nodo != null) {
-            NodoGen nodoAux = nodo;
-            while (nodoAux != null) {
-                lista.insertar(nodo.getElemento(), lista.longitud() + 1);
-                nodoAux = nodoAux.getHermano();
-            }
-            listarPorNivelesAux(nodo.getHijoIzquierdo(), lista);
+    //Método público que retorna el grado de un nodo
+    public int gradoSubarbol(Object elem)
+    {
+        int grado = -1;
+        if(this.raiz != null)
+        {
+            grado = this.gradoSubarbolRecursivo(this.raiz, elem);
         }
+        return grado;
     }
-
+    
+    private int gradoSubarbolRecursivo(NodoGen nodo, Object elem)
+    {
+        int grado = -1;
+        if(nodo != null)
+        {
+            NodoGen nodoAux;
+            if(nodo.getElemento().equals(elem))
+            {
+                grado = 0;
+                if(nodo.getHijoIzquierdo() != null)
+                {
+                    //Recorre sus hijos para conocer su grado
+                    nodoAux = nodo.getHijoIzquierdo();
+                    while(nodoAux != null)
+                    {
+                        grado++;
+                        nodoAux = nodoAux.getHermano();
+                    }
+                }
+            }else{
+                nodoAux = nodo.getHijoIzquierdo();
+                while(nodoAux != null && grado == -1)
+                {
+                    grado = this.gradoSubarbolRecursivo(nodoAux, elem);
+                    if(grado < 0)
+                    {
+                        nodoAux = nodoAux.getHermano();
+                    }
+                }
+            }
+        }
+        return grado;
+    }
     /**
      * Genera y devuelve una cadena de carácteres que indica cuál es la raíz del
      * árbol y quienes son los hijos de cada nodo
