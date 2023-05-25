@@ -445,7 +445,8 @@ public class ArbolGen {
     /**
      * Genera y devuelve una cadena de carácteres que indica cuál es la raíz del
      * árbol y quienes son los hijos de cada nodo
-     */
+     **/
+    
     @Override
     public String toString() {
         String res = "";
